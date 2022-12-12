@@ -72,3 +72,23 @@ def measure_metrics(y_test, y_pred):
     accuracy = accuracy_score(y_test, y_pred)
 
     return accuracy
+
+
+def measure_slice_metrics(X_test, y_test, column, value, model, encoder, scaler):
+    X_slice = X_test[X_test[column] == value]
+    y_slice = y_test[X_slice.index]
+    y_slice_pred = inference(model, X_slice, encoder, scaler)
+    accuracy = measure_metrics(y_slice, y_slice_pred)
+
+    return accuracy
+
+
+def output_slice_metrics(X_test, y_test, col, distinct_values, model, encoder, scaler):
+    with open('slice_output.txt', 'w') as f:
+        for val in distinct_values:
+            slice_accuracy = measure_slice_metrics(
+                X_test, y_test, col, val, model, encoder, scaler)
+            slice_accuracy = round(slice_accuracy, 3)
+            line = f"{val} slice accuracy: {slice_accuracy}"
+            f.write(line)
+            f.write('\n')

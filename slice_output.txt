@@ -1,0 +1,5 @@
+White slice accuracy: 0.833
+Asian-Pac-Islander slice accuracy: 0.795
+Black slice accuracy: 0.918
+Amer-Indian-Eskimo slice accuracy: 0.889
+Other slice accuracy: 0.959
