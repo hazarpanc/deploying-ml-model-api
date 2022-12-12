@@ -40,9 +40,6 @@ def process_data(df, label):
     X_train = df.drop(label, axis=1)
     y_train = df[label]
 
-    # Add a test to make sure not all classes in the label are the same
-    assert y_train.mean() > 0
-
     return X_train, y_train
 
 
